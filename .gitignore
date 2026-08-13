@@ -223,6 +223,8 @@ __marimo__/
 *.onnx
 *.fst
 *.zip
+*.aidem
+*.raw
 
 test_data_result
 .idea

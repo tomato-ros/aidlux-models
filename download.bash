@@ -73,13 +73,15 @@ fun_down_WeTTS(){
 
 fun_down_Qwen3_VL_8B_Instruct(){
     
-    mms get -m Qwen3-VL-8B-Instruct -p W4A16 -c $SOC -b QNN2.48 -d $SOC
+    model_file=qnn248_qcs8550_cl4096
 
-    # model_file=Qwen3-VL-8B-Instruct
+    if ! [ -f $SOC/${model_file}.zip ]; then
+        mms get -m Qwen3-VL-8B-Instruct -p W4A16 -c $SOC -b QNN2.48 -d $SOC
+    fi
+    
+    unzip -o $SOC/${model_file}.zip -d $SOC/${model_file}
 
-    # unzip -o $SOC/${model_file}.zip -d $SOC/${model_file}
-
-    # rm -f $SOC/${model_file}.zip
+    rm -f $SOC/${model_file}.zip
 }
 
 

@@ -1,0 +1,20 @@
+{
+  "backend_type": "genie",
+  "model": {},
+  "vlm_model": {
+    "vision_model_path": "qwen3-vl-8b-vit.serialized.bin.aidem",
+    "pos_embed_cos_path": "position_ids_cos.raw",
+    "pos_embed_sin_path": "position_ids_sin.raw",
+    "vocab_embed_path": "embedding_fp32.bin",
+    "window_attention_mask_path": "window_attention_mask.raw",
+    "full_attention_mask_path": "full_attention_mask.raw",
+    "llm_path_list": [
+      "qwen3-vl-8b_qnn248_qcs8550_cl4096_1_of_6.serialized.bin.aidem",
+      "qwen3-vl-8b_qnn248_qcs8550_cl4096_2_of_6.serialized.bin.aidem",
+      "qwen3-vl-8b_qnn248_qcs8550_cl4096_3_of_6.serialized.bin.aidem",
+      "qwen3-vl-8b_qnn248_qcs8550_cl4096_4_of_6.serialized.bin.aidem",
+      "qwen3-vl-8b_qnn248_qcs8550_cl4096_5_of_6.serialized.bin.aidem",
+      "qwen3-vl-8b_qnn248_qcs8550_cl4096_6_of_6.serialized.bin.aidem"
+    ]
+  }
+}
