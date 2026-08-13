@@ -90,6 +90,7 @@ class OnnxOpusMtDecoder:
         for layer_idx in range(NUM_LAYERS):
             output_names.append(f"block_{layer_idx}_present_self_key_states")
             output_names.append(f"block_{layer_idx}_present_self_value_states")
+
         # outputs = self.session.run(output_names, inputs)
         aid_res=aid_tool.decoder_infer(inputs)
         
@@ -99,10 +100,13 @@ class OnnxOpusMtDecoder:
             # print(i," acc:",acc," ",outputs[i].shape,aid_res[i].shape)
 
         return aid_res
+
 intermediates_path="./model_en2zh"
+model_name = './code/opus-mt-en-zh'
+
 encoder  = OnnxOpusMtEncoder()
 decoder  = OnnxOpusMtDecoder()
-model_name = './code/opus-mt-en-zh'
+
 tokenizer = MarianTokenizer.from_pretrained(model_name)
 
 # Example translation
