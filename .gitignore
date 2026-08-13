@@ -226,5 +226,6 @@ __marimo__/
 *.aidem
 *.raw
 
+test_qwen3vl
 test_data_result
 .idea
