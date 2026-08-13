@@ -229,3 +229,4 @@ __marimo__/
 test_qwen3vl
 test_data_result
 .idea
+cmake-build-debug
