@@ -115,24 +115,20 @@ decoder = OnnxOpusMtDecoder()
 tokenizer = MarianTokenizer.from_pretrained(model_name)
 
 src_texts = ["""
-
-Features
-
-Modularity based on hardware accelerators
-
-The Qualcomm® AI Engine Direct architecture is designed to be modular and allows for clean separation in the software 
-for different hardware cores/accelerators, such as the CPU, GPU, and DSP that are designated as backends.
-
-Learn more about the Qualcomm® AI Engine Direct backends here.
+One of the key highlights of Qualcomm® AI Engine Direct is that it provides a unified API to delegate operations, 
+such as graph creation and execution across all hardware accelerator backends. This allows users to treat 
+Qualcomm® AI Engine Direct as a hardware abstraction API and port applications easily to different cores.
 """]
 
 inputs = tokenizer(src_texts, return_tensors="pt", padding=True)
 
-print('--------------------------------------------------------------')
+print('\033[1;32m################################################################################\033[0m')
 
-print(inputs)
+print(src_texts)
 
-print('--------------------------------------------------------------')
+# print(inputs)
+
+print('\033[1;32m################################################################################\033[0m')
 
 encoder_input_ids = np.zeros([1, MAX_SEQ_LEN_ENC], dtype=np.int32)
 encoder_attention_mask = np.zeros([1, MAX_SEQ_LEN_ENC], dtype=np.int32)
@@ -187,16 +183,16 @@ for idx in range(MAX_SEQ_LEN_DEC - 1):
             past_key_values[4 * layer_idx][:, :, idx:idx + 1, :] = present_key_values[2 * layer_idx]
         past_key_values[4 * layer_idx + 1][:, :, idx:idx + 1, :] = present_key_values[2 * layer_idx + 1]
 
-print('--------------------------------------------------------------')
+print('\033[1;32m################################################################################\033[0m')
 
-print(tokens)
+# print(tokens)
 
-print('--------------------------------------------------------------')
+print('\033[1;32m################################################################################\033[0m')
 
 trans_result = tokenizer.decode(tokens, skip_special_tokens=True)
 
 print(trans_result)
 
-print('--------------------------------------------------------------')
+print('\033[1;32m################################################################################\033[0m')
 
 aid_tool.destory()

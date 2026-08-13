@@ -141,7 +141,7 @@ class AidliteTool:
         for i in range(1):
             begin_time = time.time()
             self.decoder.invoke()
-            print("解码时间:{0}".format(time.time() - begin_time))
+            # print("解码时间:{0}".format(time.time() - begin_time))
 
         res_list = []
 
@@ -190,8 +190,8 @@ class AidliteTool:
 
             self.encoder.invoke()
 
-            print('--------------------------------------------------------------')
-            print("编码时间:", time.time() - begin_time)
+            # print('\033[1;32m################################################################################\033[0m')
+            # print("编码时间:", time.time() - begin_time)
 
         res_list = []
         block_0_cross_key_states = self.encoder.get_output_tensor(0).reshape(1, 8, 256, 64)
