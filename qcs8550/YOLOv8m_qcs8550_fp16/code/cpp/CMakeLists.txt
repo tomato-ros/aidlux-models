@@ -4,8 +4,8 @@ project(aidlite_demo)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(MODEL_SRC ${CMAKE_SOURCE_DIR}/models)
-set(MODEL_DST ${CMAKE_BINARY_DIR}/models)
+set(MODEL_SRC ${CMAKE_SOURCE_DIR}/data)
+set(MODEL_DST ${CMAKE_BINARY_DIR}/data)
 
 add_executable(aidlite_demo src/main.cpp)
 

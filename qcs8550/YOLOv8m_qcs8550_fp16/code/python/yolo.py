@@ -29,6 +29,7 @@ class YoloModel:
         model = aidlite.Model.create_instance(model_path)
         if model is None:
             raise RuntimeError("Create model failed")
+        
         model.set_model_properties(
             [[1, height, width, 3]],
             aidlite.DataType.TYPE_FLOAT32,
@@ -46,6 +47,7 @@ class YoloModel:
             config.framework_type = aidlite.FrameworkType.TYPE_SNPE2
         else:
             raise ValueError(f"Unsupported model_type: {model_type}")
+        
         config.accelerate_type = aidlite.AccelerateType.TYPE_DSP
         config.is_quantify_model = 1
 
