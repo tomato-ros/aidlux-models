@@ -8,9 +8,12 @@ import cv2
 from utils import draw_detect_res
 from yolo import YoloModel
 
+OUTPUT_SHAPES = [[1, 84, 8400]]
+OUTPUT_LAYOUT = "concat"
 
-OUTPUT_SHAPES = [[1, 80, 8400], [1, 4, 8400]]
-OUTPUT_LAYOUT = "split"
+# OUTPUT_SHAPES = [[1, 80, 8400], [1, 4, 8400]]
+# OUTPUT_LAYOUT = "split"
+
 CLASS_NUM = 80
 DEFAULT_MODEL = "./models/QCS8550/W8A8/cutoff_yolov8m_qcs8550_w8a8.qnn236.ctx.bin"
 
@@ -44,12 +47,18 @@ def main() -> int:
         args.cls_num,
         args.model_type,
     )
+
     detections = model(frame, args.invoke_nums, args.conf_thres, args.iou_thres)
-    print("===================")
+
+    print('\033[1;32m################################################################################\033[0m')
     print(f"Detect {len(detections)} targets.")
+
     result = draw_detect_res(frame, detections)
+
     Path(args.save_path).parent.mkdir(parents=True, exist_ok=True)
+
     cv2.imwrite(args.save_path, result)
+
     return 0
 
 

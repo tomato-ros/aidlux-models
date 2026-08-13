@@ -5,7 +5,6 @@ from typing import Iterable, List, Sequence, Tuple
 import cv2
 import numpy as np
 
-
 COCO_CLASSES: Tuple[str, ...] = (
     "person", "bicycle", "car", "motorcycle", "airplane", "bus", "train", "truck",
     "boat", "traffic light", "fire hydrant", "stop sign", "parking meter", "bench",
@@ -154,27 +153,27 @@ def decode_yolov5_heads(outputs: Sequence[np.ndarray], class_num: int = 80) -> n
 
 
 def detect_postprocess(
-    prediction: np.ndarray,
-    original_shape: Sequence[int],
-    scale: float,
-    conf_thres: float = 0.25,
-    iou_thres: float = 0.45,
-    class_num: int = 80,
-    max_det: int = 300,
+        prediction: np.ndarray,
+        original_shape: Sequence[int],
+        scale: float,
+        conf_thres: float = 0.25,
+        iou_thres: float = 0.45,
+        class_num: int = 80,
+        max_det: int = 300,
 ) -> np.ndarray:
     prediction = normalize_prediction(prediction, class_num)
     return postprocess_decoded(prediction, original_shape, scale, conf_thres, iou_thres, class_num, max_det)
 
 
 def detect_postprocess_outputs(
-    outputs: Sequence[np.ndarray],
-    output_layout: str,
-    original_shape: Sequence[int],
-    scale: float,
-    conf_thres: float = 0.25,
-    iou_thres: float = 0.45,
-    class_num: int = 80,
-    max_det: int = 300,
+        outputs: Sequence[np.ndarray],
+        output_layout: str,
+        original_shape: Sequence[int],
+        scale: float,
+        conf_thres: float = 0.25,
+        iou_thres: float = 0.45,
+        class_num: int = 80,
+        max_det: int = 300,
 ) -> np.ndarray:
     if output_layout == "raw_yolov5":
         prediction = decode_yolov5_heads(outputs, class_num)
@@ -186,33 +185,44 @@ def detect_postprocess_outputs(
         prediction = merge_split_outputs(outputs, class_num)
     elif output_layout == "single":
         prediction = normalize_prediction(outputs[0], class_num)
+    elif output_layout == "concat":
+        # YOLOv8 单输出 shape (1, 84, 8400)
+        pred_all = outputs[0]
+        # 转置成 (1, 8400, 84)，再去掉batch维度 → (8400,84)
+        prediction = pred_all.transpose(0, 2, 1)[0]
     else:
         raise ValueError(f"Unsupported output_layout: {output_layout}")
+
     return postprocess_decoded(prediction, original_shape, scale, conf_thres, iou_thres, class_num, max_det)
 
 
 def postprocess_decoded(
-    prediction: np.ndarray,
-    original_shape: Sequence[int],
-    scale: float,
-    conf_thres: float,
-    iou_thres: float,
-    class_num: int,
-    max_det: int,
+        prediction: np.ndarray,
+        original_shape: Sequence[int],
+        scale: float,
+        conf_thres: float,
+        iou_thres: float,
+        class_num: int,
+        max_det: int,
 ) -> np.ndarray:
-    obj_conf = prediction[:, 4]
-    class_conf = prediction[:, 5:5 + class_num]
+    # ========= YOLOv8 修改点：无obj置信，第4维开始直接是类别 =========
+    pred_boxes = prediction[:, :4]  # xywh
+    class_conf = prediction[:, 4:4 + class_num]
+
     class_ids = class_conf.argmax(axis=1)
     class_scores = class_conf[np.arange(class_conf.shape[0]), class_ids]
-    scores = obj_conf * class_scores
+    scores = class_scores  # YOLOv8 不再乘 obj_conf
+
     mask = scores >= conf_thres
     if not np.any(mask):
         return np.empty((0, 6), dtype=np.float32)
-    boxes = xywh2xyxy(prediction[mask, :4])
+
+    boxes = xywh2xyxy(pred_boxes[mask, :4])
     boxes *= scale
     clip_boxes(boxes, original_shape)
     scores = scores[mask]
     class_ids = class_ids[mask]
+
     detections: List[np.ndarray] = []
     for class_id in np.unique(class_ids):
         class_mask = class_ids == class_id

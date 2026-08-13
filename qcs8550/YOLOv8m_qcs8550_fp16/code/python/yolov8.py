@@ -10,12 +10,12 @@ from utils import detect_postprocess, preprocess_image
 
 class Yolov8:
     def __init__(
-        self,
-        model_path: str,
-        width: int = 640,
-        height: int = 640,
-        class_num: int = 80,
-        model_type: str = "qnn",
+            self,
+            model_path: str,
+            width: int = 640,
+            height: int = 640,
+            class_num: int = 80,
+            model_type: str = "qnn",
     ):
         self.width = width
         self.height = height
@@ -60,11 +60,11 @@ class Yolov8:
             interpreter.destory()
 
     def __call__(
-        self,
-        image: np.ndarray,
-        invoke_nums: int = 10,
-        conf_thres: float = 0.25,
-        iou_thres: float = 0.45,
+            self,
+            image: np.ndarray,
+            invoke_nums: int = 10,
+            conf_thres: float = 0.25,
+            iou_thres: float = 0.45,
     ) -> np.ndarray:
         input_tensor, scale = preprocess_image(image, self.width)
         if self.interpreter.set_input_tensor(0, input_tensor.data) != 0:
@@ -78,7 +78,7 @@ class Yolov8:
             if result != 0:
                 raise RuntimeError("interpreter invoke failed")
 
-        print("====================================")
+        print('\033[1;32m################################################################################\033[0m')
         print(
             f"QNN invoke {invoke_nums} times:\n"
             f" --mean_invoke_time is {sum(invoke_time) / invoke_nums}\n"
@@ -86,7 +86,7 @@ class Yolov8:
             f" --min_invoke_time is {min(invoke_time)}\n"
             f" --var_invoketime is {np.var(invoke_time)}"
         )
-        print("====================================")
+        print('\033[1;32m################################################################################\033[0m')
 
         output = self.interpreter.get_output_tensor(0).reshape(*self.output_shape)
         return detect_postprocess(
