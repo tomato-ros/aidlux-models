@@ -71,6 +71,18 @@ fun_down_WeTTS(){
     rm -f $SOC/${model_file}.zip
 }
 
+fun_down_Qwen3_VL_8B_Instruct(){
+    
+    mms get -m Qwen3-VL-8B-Instruct -p W4A16 -c $SOC -b QNN2.48 -d $SOC
+
+    # model_file=Qwen3-VL-8B-Instruct
+
+    # unzip -o $SOC/${model_file}.zip -d $SOC/${model_file}
+
+    # rm -f $SOC/${model_file}.zip
+}
+
+
 
 echo "********************************************************************"
 
@@ -82,7 +94,9 @@ fun_init
 
 # fun_down_MeloTTS_Chinese
 
-fun_down_WeTTS
+# fun_down_WeTTS
+
+fun_down_Qwen3_VL_8B_Instruct
 
 echo "********************************************************************"
 
