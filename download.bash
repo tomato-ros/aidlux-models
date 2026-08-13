@@ -98,7 +98,7 @@ fun_init
 
 # fun_down_WeTTS
 
-fun_down_Qwen3_VL_8B_Instruct
+# fun_down_Qwen3_VL_8B_Instruct
 
 echo "********************************************************************"
 
