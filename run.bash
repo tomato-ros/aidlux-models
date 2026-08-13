@@ -9,29 +9,28 @@ echo "工作目录:$CUR_DIR"
 #/////////////////////////////////////////////////////////////////////////////////////////////////
 
 fun_print_line(){
-    echo -e "\033[1;31m================================================================================\033[0m"
+    local text="$1"
+    local color="${2:-1;31}"
+    local line="================================================================================"
+    local width=${#line}
+    local pad=$(( (width - ${#text}) / 2 - 1 ))
+    local space=$(printf "%${pad}s")
+
+    echo -e "\033[${color}m${line}\033[0m"
+    echo -e "\033[${color}m|${space}${text}${space}|\033[0m"
+    echo -e "\033[${color}m${line}\033[0m"
 }
 
 #/////////////////////////////////////////////////////////////////////////////////////////////////
 
-fun_print_line
-
 export SOC=qcs8550
 
-fun_print_line
+fun_print_line "opus-mt-en-zh_qcs8550_fp16"
 
-# 英文翻译
 ./$SOC/opus-mt-en-zh_qcs8550_fp16/run.bash
 
-fun_print_line
 
-# yolov8m
+fun_print_line "YOLOv8m_qcs8550_fp16"
+
 ./$SOC/YOLOv8m_qcs8550_fp16/run.bash
-
-fun_print_line
-
-
-
-
-
 
