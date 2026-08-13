@@ -11,6 +11,7 @@ add_executable(aidlite_demo src/main.cpp)
 
 target_include_directories(aidlite_demo PRIVATE
         /usr/local/include/aidlux/aidlite
+        /usr/include/opencv4
 )
 
 target_link_directories(aidlite_demo PRIVATE
@@ -19,6 +20,10 @@ target_link_directories(aidlite_demo PRIVATE
 
 target_link_libraries(aidlite_demo PRIVATE
         aidlite
+        opencv_core
+        opencv_imgproc
+        opencv_imgcodecs
+        pthread
 )
 
 
