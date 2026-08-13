@@ -34,3 +34,6 @@ fun_print_line "YOLOv8m_qcs8550_fp16"
 
 ./$SOC/YOLOv8m_qcs8550_fp16/run.bash
 
+fun_print_line "WeTTS_qcs8550_fp32"
+
+./$SOC/WeTTS_qcs8550_fp32/run.bash
