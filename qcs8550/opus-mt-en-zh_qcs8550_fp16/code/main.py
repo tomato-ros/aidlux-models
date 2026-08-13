@@ -4,14 +4,18 @@ import numpy as np
 import os
 from aidlite_tool import AidliteTool
 import pdb
+
 def get_acc(onnx_out,other_out):
     cosine_similarity=np.dot(np.array(onnx_out),np.array(other_out))/(np.linalg.norm(np.array(onnx_out)) * np.linalg.norm(np.array(other_out)))
     return cosine_similarity
+
 aid_tool=AidliteTool()
-decoder_model_path="./output/opus_mt_decoder_htp.bin"
-encoder_model_path="./output/opus_mt_encoder_htp.bin"
+
+decoder_model_path="models/QCS8550/FP16/opus_mt_decoder_htp.bin"
+encoder_model_path="models/QCS8550/FP16/opus_mt_encoder_htp.bin"
 
 aid_tool.init(encoder_model_path,decoder_model_path)
+
 MAX_SEQ_LEN_ENC = 256
 MAX_SEQ_LEN_DEC = 256
 TRANSPOSE_KEY = False
@@ -98,7 +102,7 @@ class OnnxOpusMtDecoder:
 intermediates_path="./model_en2zh"
 encoder  = OnnxOpusMtEncoder()
 decoder  = OnnxOpusMtDecoder()
-model_name = './opus-mt-en-zh'
+model_name = './code/opus-mt-en-zh'
 tokenizer = MarianTokenizer.from_pretrained(model_name)
 
 # Example translation

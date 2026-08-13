@@ -11,7 +11,7 @@ class AidliteTool:
             print("Create config failed !")
             return False
         config.implement_type = aidlite.ImplementType.TYPE_LOCAL
-        config.framework_type = aidlite.FrameworkType.TYPE_QNN236
+        config.framework_type = aidlite.FrameworkType.TYPE_QNN248
         config.accelerate_type = aidlite.AccelerateType.TYPE_DSP
         config.is_quantify_model = 1
         model = aidlite.Model.create_instance(model_path)
@@ -39,7 +39,7 @@ class AidliteTool:
             print("Create config failed !")
             return False
         config.implement_type = aidlite.ImplementType.TYPE_LOCAL
-        config.framework_type = aidlite.FrameworkType.TYPE_QNN236
+        config.framework_type = aidlite.FrameworkType.TYPE_QNN248
         config.accelerate_type = aidlite.AccelerateType.TYPE_DSP
         config.is_quantify_model = 1
         model = aidlite.Model.create_instance(model_path)

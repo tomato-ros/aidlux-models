@@ -1,4 +1,5 @@
 # Environment Setup
+
 ```bash
 sudo aid-pkg update
 sudo aid-pkg install aidlite-sdk
