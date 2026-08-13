@@ -26,7 +26,7 @@ fun_init(){
     # mms login
 }
 
-fun_down(){
+fun_down_opus_mt_en_zh(){
     
     mms get -m opus-mt-en-zh -p FP16 -c $SOC -b QNN2.36 -d $SOC
 
@@ -37,11 +37,24 @@ fun_down(){
     rm -f $SOC/${model_file}.zip
 }
 
+fun_down_YOLOv8m(){
+    
+    mms get -m YOLOv8m -p FP16 -c $SOC -b QNN2.36 -d $SOC
+
+    model_file=YOLOv8m_qcs8550_fp16
+
+    unzip -o $SOC/${model_file}.zip -d $SOC/${model_file}
+
+    rm -f $SOC/${model_file}.zip
+}
+
 echo "********************************************************************"
 
 fun_init
 
-fun_down
+# fun_down_opus_mt_en_zh
+
+fun_down_YOLOv8m
 
 echo "********************************************************************"
 
