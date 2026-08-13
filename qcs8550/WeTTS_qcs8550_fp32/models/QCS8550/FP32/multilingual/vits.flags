@@ -1,0 +1,4 @@
+--sampling_rate=16000
+--speaker2id=multilingual_vits_v3_onnx/speaker.txt
+--phone2id=multilingual_vits_v3_onnx/phones.txt
+--vits_model=multilingual_vits_v3_onnx/final.onnx

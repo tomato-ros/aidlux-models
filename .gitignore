@@ -220,5 +220,8 @@ __marimo__/
 
 # custom
 *.bin
+*.onnx
+*.fst
 
+test_data_result
 .idea

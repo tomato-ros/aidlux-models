@@ -1,0 +1,10 @@
+--tagger=baker_bert_onnx/tn/zh_tn_tagger.fst
+--verbalizer=baker_bert_onnx/tn/zh_tn_verbalizer.fst
+--cmudict=baker_bert_onnx/g2p_en/cmudict.dict
+--g2p_en_model=baker_bert_onnx/g2p_en/model.fst
+--g2p_en_sym=baker_bert_onnx/g2p_en/phones.sym
+--char2pinyin=baker_bert_onnx/lexicon/pinyin_dict.txt
+--pinyin2id=baker_bert_onnx/lexicon/polyphone.txt
+--pinyin2phones=baker_bert_onnx/lexicon/lexicon.txt
+--vocab=baker_bert_onnx/vocab.txt
+--g2p_prosody_model=baker_bert_onnx/final.onnx

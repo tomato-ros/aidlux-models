@@ -48,13 +48,41 @@ fun_down_YOLOv8m(){
     rm -f $SOC/${model_file}.zip
 }
 
+# 预览版加密模型
+fun_down_MeloTTS_Chinese(){
+    
+    mms get -m MeloTTS-Chinese -p FP16 -c $SOC -b QNN2.31 -d $SOC
+
+    model_file=MeloTTS-Chinese_qcs8550_fp16
+
+    unzip -o $SOC/${model_file}.zip -d $SOC/${model_file}
+
+    rm -f $SOC/${model_file}.zip
+}
+
+fun_down_WeTTS(){
+    
+    mms get -m WeTTS -p FP32 -c $SOC -b ONNX -d $SOC
+
+    model_file=WeTTS_qcs8550_fp32
+
+    unzip -o $SOC/${model_file}.zip -d $SOC/${model_file}
+
+    rm -f $SOC/${model_file}.zip
+}
+
+
 echo "********************************************************************"
 
 fun_init
 
 # fun_down_opus_mt_en_zh
 
-fun_down_YOLOv8m
+# fun_down_YOLOv8m
+
+# fun_down_MeloTTS_Chinese
+
+fun_down_WeTTS
 
 echo "********************************************************************"
 
