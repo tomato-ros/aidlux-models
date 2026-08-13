@@ -82,7 +82,7 @@ class YoloModel:
             if result != 0:
                 raise RuntimeError("interpreter invoke failed")
 
-        print('\033[1;32m################################################################################\033[0m')
+        print('\033[1;32m----------------------------------------\033[0m')
         print(
             f"QNN invoke {invoke_nums} times:\n"
             f" --mean_invoke_time is {sum(invoke_time) / invoke_nums}\n"
@@ -91,7 +91,7 @@ class YoloModel:
             f" --var_invoketime is {np.var(invoke_time)}"
         )
 
-        print('\033[1;32m################################################################################\033[0m')
+        print('\033[1;32m----------------------------------------\033[0m')
 
         outputs = [
             self.interpreter.get_output_tensor(i).reshape(*shape)

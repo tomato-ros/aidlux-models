@@ -50,7 +50,7 @@ def main() -> int:
 
     detections = model(frame, args.invoke_nums, args.conf_thres, args.iou_thres)
 
-    print('\033[1;32m################################################################################\033[0m')
+    print('\033[1;32m----------------------------------------\033[0m')
     print(f"Detect {len(detections)} targets.")
 
     result = draw_detect_res(frame, detections)

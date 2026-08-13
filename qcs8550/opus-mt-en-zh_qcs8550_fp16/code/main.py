@@ -122,13 +122,13 @@ Qualcomm® AI Engine Direct as a hardware abstraction API and port applications 
 
 inputs = tokenizer(src_texts, return_tensors="pt", padding=True)
 
-print('\033[1;32m################################################################################\033[0m')
+print('\033[1;32m----------------------------------------\033[0m')
 
 print(src_texts)
 
 # print(inputs)
 
-print('\033[1;32m################################################################################\033[0m')
+print('\033[1;32m----------------------------------------\033[0m')
 
 encoder_input_ids = np.zeros([1, MAX_SEQ_LEN_ENC], dtype=np.int32)
 encoder_attention_mask = np.zeros([1, MAX_SEQ_LEN_ENC], dtype=np.int32)
@@ -183,16 +183,16 @@ for idx in range(MAX_SEQ_LEN_DEC - 1):
             past_key_values[4 * layer_idx][:, :, idx:idx + 1, :] = present_key_values[2 * layer_idx]
         past_key_values[4 * layer_idx + 1][:, :, idx:idx + 1, :] = present_key_values[2 * layer_idx + 1]
 
-print('\033[1;32m################################################################################\033[0m')
+print('\033[1;32m----------------------------------------\033[0m')
 
 # print(tokens)
 
-print('\033[1;32m################################################################################\033[0m')
+print('\033[1;32m----------------------------------------\033[0m')
 
 trans_result = tokenizer.decode(tokens, skip_special_tokens=True)
 
 print(trans_result)
 
-print('\033[1;32m################################################################################\033[0m')
+print('\033[1;32m----------------------------------------\033[0m')
 
 aid_tool.destory()
