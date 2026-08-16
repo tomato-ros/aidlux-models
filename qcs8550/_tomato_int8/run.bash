@@ -23,22 +23,11 @@ fun_print_line(){
 
 #/////////////////////////////////////////////////////////////////////////////////////////////////
 
-export SOC=qcs8550
+fun_print_line "《番茄ROS机器人》C++ 调用 NPU 演示"
 
-fun_print_line "《番茄ROS机器人》NPU调用演示"
-./$SOC/_tomato_int8/run.bash
+./code/cpp/run.bash
 
-# fun_print_line "opus-mt-en-zh_qcs8550_fp16"
-# ./$SOC/opus-mt-en-zh_qcs8550_fp16/run.bash
+fun_print_line "《番茄ROS机器人》Python 调用 NPU 演示"
 
+./code/python/run.bash
 
-# fun_print_line "YOLOv8m_qcs8550_fp16"
-# ./$SOC/YOLOv8m_qcs8550_fp16/run.bash
-
-
-# fun_print_line "WeTTS_qcs8550_fp32"
-# ./$SOC/WeTTS_qcs8550_fp32/run.bash
-
-
-# fun_print_line "Qwen3-VL-8B-Instruct"
-# ./$SOC/qnn248_qcs8550_cl4096/run.bash
