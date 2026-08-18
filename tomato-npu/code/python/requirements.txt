@@ -1,0 +1,9 @@
+torch==1.13.1
+torchvision==0.14.1
+onnx==1.19.1
+onnxruntime==1.23.2
+onnxsim==0.6.2
+numpy==1.26.4
+netron
+pyyaml
+pandas

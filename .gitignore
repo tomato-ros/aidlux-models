@@ -230,3 +230,7 @@ test_qwen3vl
 test_data_result
 .idea
 cmake-build-debug
+
+tomato-npu/tool
+tomato-npu/run_data
+
