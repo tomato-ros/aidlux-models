@@ -277,9 +277,9 @@ fun_run_python_example(){
 
     echo "----------> run python example (require qcs8550 board)"
 
-    python code/python/src/main.py model/aarch64-ubuntu-gcc9.4/libsimplenet_int8.so
+    python code/python/src/aidlite_demo.py model/aarch64-ubuntu-gcc9.4/libsimplenet_int8.so
     
-    python code/python/src/main.py model/aarch64-ubuntu-gcc9.4/libsimplenet_fp16.so
+    python code/python/src/aidlite_demo.py model/aarch64-ubuntu-gcc9.4/libsimplenet_fp16.so
 
 }
 
