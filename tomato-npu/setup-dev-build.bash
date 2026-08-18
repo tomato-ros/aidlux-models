@@ -14,7 +14,7 @@ fun_activate_venv
 
 fun_export_torch_onnx_model
 
-fun_view_onnx_model
+# fun_view_onnx_model
 
 fun_source_qairt_env
 
